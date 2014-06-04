@@ -86,7 +86,7 @@ See [gulp-angular-htmlify](https://github.com/pgilad/gulp-angular-htmlify)
 
 ### [Broccoli](https://github.com/broccolijs/broccoli)
 
-???
+??
 
 ## API
 
@@ -98,25 +98,25 @@ var htmlify = require('angular-html5')(params);
 
 #### test
 
-`htmlify.test(str)`
-
 Test whether a string containing HTML has `ng-attributes` that can be transformed
 to `data-ng-attributes`.
 
-Accepts: `string`
+**Usage**: `htmlify.test(str)`
 
-Returns: `Boolean`
+**Accepts**: `string`
+
+**Returns**: `Boolean`
 
 #### replace
-
-`htmlify.replace(str)`
 
 Return a transformed string that contains `data-ng-attributes` or relevant transformed attributes
 for `customPrefixes`.
 
-Accepts: `string`
+**Usage**:`htmlify.replace(str)`
 
-Returns: `string`
+**Accepts**: `string`
+
+**Returns**: `string`
 
 ### params
 
