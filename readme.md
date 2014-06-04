@@ -112,7 +112,7 @@ to `data-ng-attributes`.
 Return a transformed string that contains `data-ng-attributes` or relevant transformed attributes
 for `customPrefixes`.
 
-**Usage**:`htmlify.replace(str)`
+**Usage**: `htmlify.replace(str)`
 
 **Accepts**: `string`
 
@@ -124,8 +124,6 @@ for `customPrefixes`.
 
 #### customPrefixes
 
-Type: `Array`
-
 An array to optionally add custom prefixes to the list of converted directives.
 
 For example: `['ui-', 'gijo-']`
@@ -134,9 +132,11 @@ By default only `ng-` prefixes are are handled. Any items you add here will be h
 
 *Note: for this to work - you will need to make sure your directives can load with a `data-` prefix.*
 
-Defaults to `[ ]`
+**Type**: `Array`
 
-Example usage:
+**Default**: `[ ]`
+
+**Usage**:
 ```js
 var str = require('angular-html5')({customPrefixes: ['ui-']}).replace(oldStr);
 ```
