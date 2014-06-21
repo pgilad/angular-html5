@@ -76,17 +76,11 @@ if (needsReplace) {
 
 ## Usage in build tools
 
-### [Gulp](https://github.com/gulpjs/gulp)
+#### [Gulp](https://github.com/gulpjs/gulp) - See [gulp-angular-htmlify](https://github.com/pgilad/gulp-angular-htmlify)
 
-See [gulp-angular-htmlify](https://github.com/pgilad/gulp-angular-htmlify)
+#### [Grunt](http://gruntjs.com/) - ??
 
-### [Grunt](http://gruntjs.com/)
-
-??
-
-### [Broccoli](https://github.com/broccolijs/broccoli)
-
-??
+#### [Broccoli](https://github.com/broccolijs/broccoli) - ??
 
 ## API
 
