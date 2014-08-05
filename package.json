@@ -17,8 +17,8 @@
     "license.md"
   ],
   "scripts": {
-    "watchTest": "mocha -R spec --watch",
-    "test": "mocha"
+    "watch": "mocha -R spec --watch ./tests/test.js",
+    "test": "mocha -R spec ./tests/test.js"
   },
   "keywords": [
     "angular",
@@ -34,7 +34,7 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "mocha": "^1.21.0",
-    "should": "^4.0.1"
+    "mocha": "*",
+    "should": "*"
   }
 }

@@ -1,20 +1,20 @@
 'use strict';
-var assert = require('assert');
+//jshint unused:false
 var should = require('should');
 var fs = require('fs');
 
 describe('angular-html5', function () {
     it('should handle a no angular file', function () {
-        var filename = './fixtures/noangular.html';
-        var htmlify = require('./index')();
+        var filename = './tests/fixtures/noangular.html';
+        var htmlify = require('../index')();
 
         var testFile = fs.readFileSync(filename, 'utf8');
         htmlify.test(testFile).should.eql(false);
     });
 
     it('should handle a basic angular app', function () {
-        var filename = './fixtures/angular-basic.html';
-        var htmlify = require('./index')();
+        var filename = './tests/fixtures/angular-basic.html';
+        var htmlify = require('../index')();
 
         var testFile = fs.readFileSync(filename, 'utf8');
         htmlify.test(testFile).should.eql(true);
@@ -26,8 +26,8 @@ describe('angular-html5', function () {
     });
 
     it('should handle a complex angular app', function () {
-        var filename = './fixtures/angular-complex.html';
-        var htmlify = require('./index')();
+        var filename = './tests/fixtures/angular-complex.html';
+        var htmlify = require('../index')();
 
         var testFile = fs.readFileSync(filename, 'utf8');
         htmlify.test(testFile).should.eql(true);
@@ -53,8 +53,8 @@ describe('angular-html5', function () {
     });
 
     it('should not change anything other than angular directives', function () {
-        var filename = './fixtures/angular-complex.html';
-        var htmlify = require('./index')();
+        var filename = './tests/fixtures/angular-complex.html';
+        var htmlify = require('../index')();
         var testFile = fs.readFileSync(filename, 'utf8');
         htmlify.test(testFile).should.eql(true);
         //replace ng attributes
@@ -65,9 +65,9 @@ describe('angular-html5', function () {
     });
 
     it('should work with custom prefixes', function () {
-        var filename = './fixtures/angular-custom.html';
+        var filename = './tests/fixtures/angular-custom.html';
         var testFile = fs.readFileSync(filename, 'utf8');
-        var htmlify = require('./index')({
+        var htmlify = require('../index')({
             customPrefixes: ['ui-', 'gijo-']
         });
 
@@ -83,9 +83,9 @@ describe('angular-html5', function () {
     });
 
     it('should not modify ng-template script', function () {
-        var filename = './fixtures/angular-templates.html';
+        var filename = './tests/fixtures/angular-templates.html';
         var testFile = fs.readFileSync(filename, 'utf8');
-        var htmlify = require('./index')();
+        var htmlify = require('../index')();
 
         htmlify.test(testFile).should.eql(true);
         //validate that ng-templates don't change

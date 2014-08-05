@@ -70,7 +70,7 @@ var str = fs.readFileSync('angular.html').toString();
 
 var needsReplace = htmlify.test(str); //--> true if ng-attributes exist in file
 if (needsReplace) {
-    str = htmlify.replace(str); //--> returns modified string with transofrmed attributes
+    str = htmlify.replace(str); //--> returns the modified string with transformed attributes
 }
 ```
 
@@ -88,7 +88,7 @@ if (needsReplace) {
 var htmlify = require('angular-html5')(params);
 ```
 
-### methods
+### API Methods
 
 #### test
 
@@ -112,11 +112,15 @@ for `customPrefixes`.
 
 **Returns**: `string`
 
-### params
+### API Params
 
 `params` is an object that contains the following settings:
 
 #### customPrefixes
+
+**Type**: `Array`
+
+**Default**: `[ ]`
 
 An array to optionally add custom prefixes to the list of converted directives.
 
@@ -126,11 +130,7 @@ By default only `ng-` prefixes are are handled. Any items you add here will be h
 
 *Note: for this to work - you will need to make sure your directives can load with a `data-` prefix.*
 
-**Type**: `Array`
-
-**Default**: `[ ]`
-
-**Usage**:
+**Example Usage:**
 ```js
 var str = require('angular-html5')({customPrefixes: ['ui-']}).replace(oldStr);
 ```
