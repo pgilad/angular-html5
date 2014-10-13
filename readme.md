@@ -78,7 +78,7 @@ if (needsReplace) {
 
 #### [Gulp](https://github.com/gulpjs/gulp) - See [gulp-angular-htmlify](https://github.com/pgilad/gulp-angular-htmlify)
 
-#### [Grunt](http://gruntjs.com/) - ??
+#### [Grunt](http://gruntjs.com/) - See [grunt-angular-htmlify](https://github.com/pgilad/grunt-angular-htmlify)
 
 #### [Broccoli](https://github.com/broccolijs/broccoli) - ??
 
