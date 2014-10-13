@@ -1,15 +1,14 @@
 'use strict';
+var defaultPrefix = 'ng-';
+
 module.exports = function (params) {
     params = params || {};
-    var customPrefixes = params.customPrefixes || [];
-
     //find ng-something by default
-    var prefix = 'ng-';
+    var prefix = defaultPrefix;
+    var customPrefixes = params.customPrefixes;
     //optionally add custom prefixes
     if (Array.isArray(customPrefixes) && customPrefixes.length) {
-        var additions = customPrefixes.join('|');
-        prefix += '|';
-        prefix += additions;
+        prefix += '|' + customPrefixes.join('|');
     }
 
     //wrap around to insert into replace str later
@@ -31,15 +30,9 @@ module.exports = function (params) {
 
     return {
         test: function (str) {
-            if (typeof str !== 'string') {
-                throw new Error('Input to test function must be a string');
-            }
             return replaceRegex.test(str);
         },
         replace: function (str) {
-            if (typeof str !== 'string') {
-                throw new Error('Input to replace function must be a string');
-            }
             return str.replace(replaceRegex, replaceStr);
         }
     };
