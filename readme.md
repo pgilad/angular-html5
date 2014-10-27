@@ -137,4 +137,4 @@ var str = require('angular-html5')({customPrefixes: ['ui-']}).replace(oldStr);
 
 ## License
 
-MIT ©2014 **Gilad Peleg**
+MIT ©[Gilad Peleg](http://giladpeleg.com)
