@@ -1,40 +1,36 @@
 {
-  "name": "angular-html5",
-  "description": "Change your ng-attributes to data-ng-attributes for html5 validation",
-  "version": "0.3.0",
-  "engines": {
-    "node": ">=0.10.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/pgilad/angular-html5"
-  },
-  "homepage": "https://github.com/pgilad/angular-html5",
-  "bugs": "https://github.com/pgilad/angular-html5/issues",
-  "main": "index.js",
-  "files": [
-    "index.js",
-    "license.md"
-  ],
-  "scripts": {
-    "watch": "mocha -R spec --watch ./tests/test.js",
-    "test": "mocha -R spec ./tests/test.js"
-  },
-  "keywords": [
-    "angular",
-    "w3c",
-    "validator",
-    "html5",
-    "data-ng",
-    "ng"
-  ],
-  "author": {
-    "name": "Gilad Peleg",
-    "email": "giladp007@gmail.com"
-  },
-  "license": "MIT",
-  "devDependencies": {
-    "mocha": "*",
-    "should": "*"
-  }
+    "name": "angular-html5",
+    "version": "0.3.0",
+    "description": "Change your ng-attributes to data-ng-attributes for html5 validation",
+    "repository": "pgilad/angular-html5",
+    "license": "MIT",
+    "author": {
+        "name": "Gilad Peleg",
+        "email": "giladp007@gmail.com",
+        "url": "http://giladpeleg.com"
+    },
+    "main": "index.js",
+    "files": [
+        "index.js"
+    ],
+    "engines": {
+        "node": ">=0.10.0"
+    },
+    "scripts": {
+        "watch": "mocha -R spec --watch ./tests/test.js",
+        "test": "mocha -R spec ./tests/test.js"
+    },
+    "keywords": [
+        "angular",
+        "w3c",
+        "validator",
+        "html5",
+        "data-ng",
+        "ng",
+        "valid"
+    ],
+    "devDependencies": {
+        "mocha": "*",
+        "should": "*"
+    }
 }
