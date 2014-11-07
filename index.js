@@ -30,9 +30,13 @@ module.exports = function (params) {
 
     return {
         test: function (str) {
+            //see http://stackoverflow.com/questions/2141974/javascript-regex-literal-with-g-used-multiple-times
+            replaceRegex.lastIndex = 0;
             return replaceRegex.test(str);
         },
         replace: function (str) {
+            //see http://stackoverflow.com/questions/2141974/javascript-regex-literal-with-g-used-multiple-times
+            replaceRegex.lastIndex = 0;
             return str.replace(replaceRegex, replaceStr);
         }
     };
