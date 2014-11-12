@@ -1,3 +1,4 @@
+/* global describe,it */
 'use strict';
 //jshint unused:false
 var should = require('should');
@@ -91,5 +92,25 @@ describe('angular-html5', function () {
         //validate that ng-templates don't change
         var contents = htmlify.replace(testFile);
         contents.should.match(/type="text\/ng-template"/);
+    });
+
+    it('should work with custom prefixes with multiple classes', function () {
+        var filename = './tests/fixtures/angular-multi-class.html';
+        var testFile = fs.readFileSync(filename, 'utf8');
+        var htmlify = require('../index')({
+            customPrefixes: ['xyz-']
+        });
+
+        htmlify.test(testFile).should.eql(true);
+
+        var contents = htmlify.replace(testFile);
+        //test that data-ng appears
+        contents.should.match(/\s+data-ng-app/);
+        //test that ng-app doesn't appear
+        contents.should.not.match(/\s+ng-app/);
+        contents.should.match(/data-xyz-first/);
+        contents.should.match(/data-xyz-second/);
+        contents.should.match(/data-xyz-attrib-1/);
+        contents.should.match(/data-xyz-attrib-2/);
     });
 });

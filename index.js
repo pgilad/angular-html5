@@ -18,7 +18,7 @@ module.exports = function (params) {
     //1. ' ng-'
     //2. '<ng-'
     //3. '</ng-'
-    var allowedPreChars = '(\\s|<|<\/){1}';
+    var allowedPreChars = '(\\s|<|<\/|["\']){1}';
     //build find/replace regex
     //$1 -> allowable pre-chars
     //$2 -> prefix match
