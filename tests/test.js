@@ -108,8 +108,8 @@ describe('angular-html5', function () {
         contents.should.match(/\s+data-ng-app/);
         //test that ng-app doesn't appear
         contents.should.not.match(/\s+ng-app/);
-        contents.should.match(/data-xyz-first/);
-        contents.should.match(/data-xyz-second/);
+        contents.should.not.match(/data-xyz-first/);
+        contents.should.not.match(/data-xyz-second/);
         contents.should.match(/data-xyz-attrib-1/);
         contents.should.match(/data-xyz-attrib-2/);
     });

@@ -32,5 +32,8 @@
   "devDependencies": {
     "mocha": "*",
     "should": "*"
+  },
+  "dependencies": {
+    "cheerio": "^0.18.0"
   }
 }

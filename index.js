@@ -1,43 +1,62 @@
 'use strict';
+var cheerio = require('cheerio');
 var defaultPrefix = 'ng-';
 
 module.exports = function (params) {
     params = params || {};
     //find ng-something by default
-    var prefix = defaultPrefix;
-    var customPrefixes = params.customPrefixes;
-    //optionally add custom prefixes
-    if (Array.isArray(customPrefixes) && customPrefixes.length) {
-        prefix += '|' + customPrefixes.join('|');
+    var customPrefixes = params.customPrefixes || [];
+    if (customPrefixes && !Array.isArray(customPrefixes)) {
+        customPrefixes = [customPrefixes];
     }
-
-    //wrap around to insert into replace str later
-    prefix = '(' + prefix + '){1}';
-
-    //handle the following:
-    //1. ' ng-'
-    //2. '<ng-'
-    //3. '</ng-'
-    var allowedPreChars = '(\\s|<|<\/|["\']){1}';
-    //build find/replace regex
-    //$1 -> allowable pre-chars
-    //$2 -> prefix match
-    //$3 -> actual directive (partially)
-    var replaceRegex = new RegExp(allowedPreChars + prefix + '(\\w+)', 'ig');
-
-    //replace with data-ng-something
-    var replaceStr = '$1data-$2$3';
+    var prefixes = [defaultPrefix].concat(customPrefixes);
+    var rPrefix = new RegExp('^(' + prefixes.join('|') + ')', 'ig');
 
     return {
         test: function (str) {
-            //see http://stackoverflow.com/questions/2141974/javascript-regex-literal-with-g-used-multiple-times
-            replaceRegex.lastIndex = 0;
-            return replaceRegex.test(str);
+            var $ = cheerio.load(str, {
+                recognizeSelfClosing: true
+            });
+            var foundPrefix = false;
+            $('*').each(function (i, el) {
+                // check tagName
+                rPrefix.lastIndex = 0;
+                foundPrefix = rPrefix.test(el.tagName);
+                // early exit
+                if (foundPrefix) {
+                    return false;
+                }
+
+                // check attributes
+                var attrs = Object.keys($(el).attr()).filter(function (attr) {
+                    rPrefix.lastIndex = 0;
+                    return rPrefix.test(attr);
+                });
+                foundPrefix = attrs.length > 0;
+                // early exit
+                if (foundPrefix) {
+                    return false;
+                }
+            });
+            return foundPrefix;
         },
         replace: function (str) {
-            //see http://stackoverflow.com/questions/2141974/javascript-regex-literal-with-g-used-multiple-times
-            replaceRegex.lastIndex = 0;
-            return str.replace(replaceRegex, replaceStr);
+            var $ = cheerio.load(str, {
+                xmlMode: true
+            });
+            $('*').each(function (i, el) {
+                var $el = $(el);
+                Object.keys($el.attr()).forEach(function (attr) {
+                    rPrefix.lastIndex = 0;
+                    if (!rPrefix.test(attr)) {
+                        return;
+                    }
+                    $el.attr('data-' + attr, $el.attr(attr));
+                    $el.removeAttr(attr);
+                });
+            });
+
+            return $.html();
         }
     };
 };
