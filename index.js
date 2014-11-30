@@ -42,7 +42,10 @@ module.exports = function (params) {
         },
         replace: function (str) {
             var $ = cheerio.load(str, {
-                xmlMode: true
+                xmlMode: false,
+                decodeEntities: false,
+                normalizeWhitespace: false,
+                recognizeSelfClosing: true
             });
             $('*').each(function (i, el) {
                 var $el = $(el);
@@ -54,6 +57,14 @@ module.exports = function (params) {
                     $el.attr('data-' + attr, $el.attr(attr));
                     $el.removeAttr(attr);
                 });
+
+                // check tagName
+                rPrefix.lastIndex = 0;
+                if (rPrefix.test(el.tagName)) {
+                    $el.replaceWith(function () {
+                        return $('<data-' + el.tagName + '/>').attr($el.attr()).append($el.html());
+                    });
+                }
             });
 
             return $.html();

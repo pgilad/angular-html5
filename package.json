@@ -30,6 +30,7 @@
     "valid"
   ],
   "devDependencies": {
+    "js-beautify": "^1.5.4",
     "mocha": "*",
     "should": "*"
   },
