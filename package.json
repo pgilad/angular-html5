@@ -30,7 +30,11 @@
     "valid"
   ],
   "devDependencies": {
+    "js-beautify": "^1.5.4",
     "mocha": "*",
     "should": "*"
+  },
+  "dependencies": {
+    "cheerio": "^0.18.0"
   }
 }

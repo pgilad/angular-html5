@@ -3,6 +3,7 @@
 //jshint unused:false
 var should = require('should');
 var fs = require('fs');
+var htmlBeautify = require('js-beautify').html;
 
 describe('angular-html5', function () {
     it('should handle a no angular file', function () {
@@ -37,11 +38,11 @@ describe('angular-html5', function () {
         contents.should.match(/\s+data-ng-app/);
         //test that ng-app doesn't appear
         contents.should.not.match(/\s+ng-app/);
-        //test that ng-controller is transormed
+        //test that ng-controller is transformed
         contents.should.match(/\s+data-ng-controller/);
         //test that ng-controller doesn't appear
         contents.should.not.match(/\s+ng-controller/);
-        //test that ng-if is transormed
+        //test that ng-if is transformed
         contents.should.match(/\s+data-ng-if/);
         //test that ng-if doesn't appear
         contents.should.not.match(/\s+ng-if/);
@@ -62,7 +63,7 @@ describe('angular-html5', function () {
         var contents = htmlify.replace(testFile);
         //custom replace back
         contents = contents.replace(/data-ng-/gi, 'ng-');
-        contents.should.eql(testFile);
+        htmlBeautify(contents).should.eql(htmlBeautify(testFile));
     });
 
     it('should work with custom prefixes', function () {
@@ -108,9 +109,60 @@ describe('angular-html5', function () {
         contents.should.match(/\s+data-ng-app/);
         //test that ng-app doesn't appear
         contents.should.not.match(/\s+ng-app/);
-        contents.should.match(/data-xyz-first/);
-        contents.should.match(/data-xyz-second/);
+        contents.should.not.match(/data-xyz-first/);
+        contents.should.not.match(/data-xyz-second/);
         contents.should.match(/data-xyz-attrib-1/);
         contents.should.match(/data-xyz-attrib-2/);
     });
+
+    it('should correctly modify example file', function () {
+        var filename = './tests/fixtures/example.html';
+        var htmlify = require('../index')();
+        var testFile = fs.readFileSync(filename, 'utf8');
+        htmlify.test(testFile).should.eql(true);
+        //replace ng attributes
+        var contents = htmlify.replace(testFile);
+        contents.should.match(/data-ng-app/);
+        contents.should.match(/data-ng-repeat/);
+        contents.should.match(/data-ng-controller/);
+        contents.should.not.match(/[^-]ng-/);
+    });
+
+    it('should leave file unmodified when replace and turn back', function () {
+        var filename = './tests/fixtures/example.html';
+        var htmlify = require('../index')();
+        var testFile = fs.readFileSync(filename, 'utf8');
+        htmlify.test(testFile).should.eql(true);
+        //replace ng attributes
+        var contents = htmlify.replace(testFile);
+        //custom replace back
+        contents = contents.replace(/data-ng-/gi, 'ng-');
+        htmlBeautify(contents).should.eql(htmlBeautify(testFile));
+    });
+
+    it('should correctly modify second example file', function () {
+        var filename = './tests/fixtures/example2.html';
+        var htmlify = require('../index')();
+        var testFile = fs.readFileSync(filename, 'utf8');
+        htmlify.test(testFile).should.eql(true);
+        //replace ng attributes
+        var contents = htmlify.replace(testFile);
+        contents.should.match(/data-ng-app/);
+        contents.should.match(/data-ng-repeat/);
+        contents.should.match(/data-ng-controller/);
+        contents.should.not.match(/[^-]ng-/);
+    });
+
+    it('should leave example2 unmodified when replace and turn back', function () {
+        var filename = './tests/fixtures/example2.html';
+        var htmlify = require('../index')();
+        var testFile = fs.readFileSync(filename, 'utf8');
+        htmlify.test(testFile).should.eql(true);
+        //replace ng attributes
+        var contents = htmlify.replace(testFile);
+        //custom replace back
+        contents = contents.replace(/data-ng-/gi, 'ng-');
+        htmlBeautify(contents).should.eql(htmlBeautify(testFile));
+    });
+
 });
