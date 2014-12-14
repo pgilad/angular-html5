@@ -9,6 +9,7 @@
     "email": "giladp007@gmail.com",
     "url": "http://giladpeleg.com"
   },
+  "bin": "./bin/angular-html5.js",
   "main": "index.js",
   "files": [
     "index.js"
@@ -35,6 +36,9 @@
     "should": "*"
   },
   "dependencies": {
-    "cheerio": "^0.18.0"
+    "cheerio": "^0.18.0",
+    "commander": "^2.5.0",
+    "get-stdin": "^3.0.2",
+    "log-symbols": "^1.0.1"
   }
 }

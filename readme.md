@@ -55,13 +55,41 @@ This plugin plays nice with `type="text/ng-template"` and won't break it.
 
 ## Install
 
+### Global
+
+```bash
+$ npm install --global angular-html5
+```
+
+### Usage
+
+```bash
+❯ angular-html5 --help
+
+  Usage: angular-html5 [options] <file>
+
+  Options:
+
+    -h, --help                      output usage information
+    -V, --version                   output the version number
+    -c, --custom-prefix [prefixes]  Optionally add custom prefixes to the list of converted directives.
+
+  Examples:
+
+    $ angular-html5 index.js
+    $ angular-html5 --custom-prefix ui --custom-prefix gijo index.js > ./dist/index.js
+    $ cat index.js | angular-html5 > ./dist/index.js
+```
+
+### Programmatic
+
 Install with [npm](https://npmjs.org/package/angular-html5)
 
-```
-npm install --save-dev angular-html5
+```bash
+$ npm install --save-dev angular-html5
 ```
 
-## Usage
+### Usage
 
 ```js
 var htmlify = require('angular-html5')();
@@ -90,7 +118,7 @@ var htmlify = require('angular-html5')(params);
 
 ### API Methods
 
-#### test
+#### .test(str)
 
 Test whether a string containing HTML has `ng-attributes` that can be transformed
 to `data-ng-attributes`.
@@ -101,7 +129,7 @@ to `data-ng-attributes`.
 
 **Returns**: `Boolean`
 
-#### replace
+#### .replace(str)
 
 Return a transformed string that contains `data-ng-attributes` or relevant transformed attributes
 for `customPrefixes`.

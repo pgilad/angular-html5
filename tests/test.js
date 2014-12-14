@@ -4,11 +4,12 @@
 var should = require('should');
 var fs = require('fs');
 var htmlBeautify = require('js-beautify').html;
+var angularHtml5 = require('../index');
 
 describe('angular-html5', function () {
     it('should handle a no angular file', function () {
         var filename = './tests/fixtures/noangular.html';
-        var htmlify = require('../index')();
+        var htmlify = angularHtml5();
 
         var testFile = fs.readFileSync(filename, 'utf8');
         htmlify.test(testFile).should.eql(false);
@@ -16,7 +17,7 @@ describe('angular-html5', function () {
 
     it('should handle a basic angular app', function () {
         var filename = './tests/fixtures/angular-basic.html';
-        var htmlify = require('../index')();
+        var htmlify = angularHtml5();
 
         var testFile = fs.readFileSync(filename, 'utf8');
         htmlify.test(testFile).should.eql(true);
@@ -29,7 +30,7 @@ describe('angular-html5', function () {
 
     it('should handle a complex angular app', function () {
         var filename = './tests/fixtures/angular-complex.html';
-        var htmlify = require('../index')();
+        var htmlify = angularHtml5();
 
         var testFile = fs.readFileSync(filename, 'utf8');
         htmlify.test(testFile).should.eql(true);
@@ -56,7 +57,7 @@ describe('angular-html5', function () {
 
     it('should not change anything other than angular directives', function () {
         var filename = './tests/fixtures/angular-complex.html';
-        var htmlify = require('../index')();
+        var htmlify = angularHtml5();
         var testFile = fs.readFileSync(filename, 'utf8');
         htmlify.test(testFile).should.eql(true);
         //replace ng attributes
@@ -69,7 +70,7 @@ describe('angular-html5', function () {
     it('should work with custom prefixes', function () {
         var filename = './tests/fixtures/angular-custom.html';
         var testFile = fs.readFileSync(filename, 'utf8');
-        var htmlify = require('../index')({
+        var htmlify = angularHtml5({
             customPrefixes: ['ui-', 'gijo-']
         });
 
@@ -87,7 +88,7 @@ describe('angular-html5', function () {
     it('should not modify ng-template script', function () {
         var filename = './tests/fixtures/angular-templates.html';
         var testFile = fs.readFileSync(filename, 'utf8');
-        var htmlify = require('../index')();
+        var htmlify = angularHtml5();
 
         htmlify.test(testFile).should.eql(true);
         //validate that ng-templates don't change
@@ -98,7 +99,7 @@ describe('angular-html5', function () {
     it('should work with custom prefixes with multiple classes', function () {
         var filename = './tests/fixtures/angular-multi-class.html';
         var testFile = fs.readFileSync(filename, 'utf8');
-        var htmlify = require('../index')({
+        var htmlify = angularHtml5({
             customPrefixes: ['xyz-']
         });
 
@@ -117,7 +118,7 @@ describe('angular-html5', function () {
 
     it('should correctly modify example file', function () {
         var filename = './tests/fixtures/example.html';
-        var htmlify = require('../index')();
+        var htmlify = angularHtml5();
         var testFile = fs.readFileSync(filename, 'utf8');
         htmlify.test(testFile).should.eql(true);
         //replace ng attributes
@@ -130,7 +131,7 @@ describe('angular-html5', function () {
 
     it('should leave file unmodified when replace and turn back', function () {
         var filename = './tests/fixtures/example.html';
-        var htmlify = require('../index')();
+        var htmlify = angularHtml5();
         var testFile = fs.readFileSync(filename, 'utf8');
         htmlify.test(testFile).should.eql(true);
         //replace ng attributes
@@ -142,7 +143,7 @@ describe('angular-html5', function () {
 
     it('should correctly modify second example file', function () {
         var filename = './tests/fixtures/example2.html';
-        var htmlify = require('../index')();
+        var htmlify = angularHtml5();
         var testFile = fs.readFileSync(filename, 'utf8');
         htmlify.test(testFile).should.eql(true);
         //replace ng attributes
@@ -155,7 +156,7 @@ describe('angular-html5', function () {
 
     it('should leave example2 unmodified when replace and turn back', function () {
         var filename = './tests/fixtures/example2.html';
-        var htmlify = require('../index')();
+        var htmlify = angularHtml5();
         var testFile = fs.readFileSync(filename, 'utf8');
         htmlify.test(testFile).should.eql(true);
         //replace ng attributes
