@@ -12,6 +12,7 @@
   "bin": "./bin/angular-html5.js",
   "main": "index.js",
   "files": [
+    "bin",
     "index.js"
   ],
   "engines": {
