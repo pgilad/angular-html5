@@ -1,6 +1,6 @@
 {
   "name": "angular-html5",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "description": "Change your ng-attributes to data-ng-attributes for html5 validation",
   "repository": "pgilad/angular-html5",
   "license": "MIT",
