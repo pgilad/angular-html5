@@ -38,7 +38,7 @@
   },
   "dependencies": {
     "cheerio": "^0.18.0",
-    "commander": "^2.5.0",
+    "commander": "^2.5.1",
     "get-stdin": "^3.0.2",
     "log-symbols": "^1.0.1"
   }
