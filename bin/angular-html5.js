@@ -47,7 +47,6 @@ function run(contents, params) {
 }
 
 function readFiles(files) {
-    //TOOD: handle multiple files
     var file = files[0];
     var _contents = fs.readFileSync(path.resolve(process.cwd(), file), 'utf8');
     run(_contents, {
