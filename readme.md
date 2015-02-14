@@ -94,21 +94,21 @@ $ npm install --save-dev angular-html5
 ```js
 var htmlify = require('angular-html5')();
 
-var str = fs.readFileSync('angular.html').toString();
+var str = fs.readFileSync('angular.html', 'utf8');
 
-var needsReplace = htmlify.test(str); //--> true if ng-attributes exist in file
+// test if contents need replacing (testing is quick, replacing is slower)
+var needsReplace = htmlify.test(str);
 if (needsReplace) {
-    str = htmlify.replace(str); //--> returns the modified string with transformed attributes
+    // get the transformed html string with data- attributes
+    str = htmlify.replace(str);
 }
 ```
 
 ## Usage in build tools
 
-#### [Gulp](https://github.com/gulpjs/gulp) - See [gulp-angular-htmlify](https://github.com/pgilad/gulp-angular-htmlify)
+#### [Gulp](https://github.com/gulpjs/gulp) - [gulp-angular-htmlify](https://github.com/pgilad/gulp-angular-htmlify)
 
-#### [Grunt](http://gruntjs.com/) - See [grunt-angular-htmlify](https://github.com/pgilad/grunt-angular-htmlify)
-
-#### [Broccoli](https://github.com/broccolijs/broccoli) - ??
+#### [Grunt](http://gruntjs.com/) - [grunt-angular-htmlify](https://github.com/pgilad/grunt-angular-htmlify)
 
 ## API
 
