@@ -166,4 +166,30 @@ describe('angular-html5', function () {
         htmlBeautify(contents).should.eql(htmlBeautify(testFile));
     });
 
+    it('should preserve explicitly closed SVG elements', function () {
+        var types = ['closed', 'self'];
+        for (var i = 0; i < types.length; i++) {
+            var filename = './tests/fixtures/angular-svg-' + types[i] + '.html';
+            var htmlify = angularHtml5();
+            var testFile = fs.readFileSync(filename, 'utf8');
+            htmlify.test(testFile).should.eql(true);
+            var contents = htmlify.replace(testFile);
+            //test that SVG elements are explicitly closed
+            contents.should.match(/<path[\s\S]*?([^>]*?\/>|>[\s\S]*?<\/path>)/);
+        }
+    });
+
+    it('should preserve explicitly closed MathML elements', function () {
+        var types = ['closed', 'self'];
+        for (var i = 0; i < types.length; i++) {
+            var filename = './tests/fixtures/angular-mathml-' + types[i] + '.html';
+            var htmlify = angularHtml5();
+            var testFile = fs.readFileSync(filename, 'utf8');
+            htmlify.test(testFile).should.eql(true);
+            var contents = htmlify.replace(testFile);
+            //test that SVG elements are explicitly closed
+            contents.should.match(/<infinity[\s\S]*?([^>]*?\/>|>[\s\S]*?<\/infinity>)/);
+        }
+    });
+
 });
