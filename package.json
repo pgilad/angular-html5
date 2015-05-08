@@ -32,14 +32,14 @@
     "valid"
   ],
   "devDependencies": {
-    "js-beautify": "^1.5.4",
-    "mocha": "*",
-    "should": "*"
+    "js-beautify": "^1.5.5",
+    "mocha": "^2.2.4",
+    "should": "^6.0.1"
   },
   "dependencies": {
-    "cheerio": "^0.18.0",
-    "commander": "^2.6.0",
+    "cheerio": "^0.19.0",
+    "commander": "^2.8.1",
     "get-stdin": "^4.0.1",
-    "log-symbols": "^1.0.1"
+    "log-symbols": "^1.0.2"
   }
 }
