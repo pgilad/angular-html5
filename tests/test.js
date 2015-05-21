@@ -39,6 +39,10 @@ describe('angular-html5', function () {
         contents.should.match(/\s+data-ng-app/);
         //test that ng-app doesn't appear
         contents.should.not.match(/\s+ng-app/);
+        //test that data-ng-form appears
+        contents.should.match(/<data-ng-form/);
+        //test that ng-form doesn't appear
+        contents.should.not.match(/<ng-form/);
         //test that ng-controller is transformed
         contents.should.match(/\s+data-ng-controller/);
         //test that ng-controller doesn't appear
