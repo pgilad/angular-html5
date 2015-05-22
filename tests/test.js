@@ -59,6 +59,33 @@ describe('angular-html5', function () {
         contents.should.match(/<data-ng-pluralize/);
     });
 
+    it('should handle a nested pattern', function () {
+        var filename = './tests/fixtures/angular-nested.html';
+        var htmlify = angularHtml5();
+
+        var testFile = fs.readFileSync(filename, 'utf8');
+        htmlify.test(testFile).should.eql(true);
+        var contents = htmlify.replace(testFile);
+        //test that data-ng appears
+        contents.should.match(/\s+data-ng-app/);
+        //test that data-ng-form appears
+        contents.should.match(/<data-ng-form/);
+        //test that ng-form doesn't appear
+        contents.should.not.match(/<ng-form/);
+        //test that ng-controller is transformed
+        contents.should.match(/\s+data-ng-controller/);
+        //test that ng-controller doesn't appear
+        contents.should.not.match(/\s+ng-controller/);
+        //test that ng-if is transformed
+        contents.should.match(/\s+data-ng-if/);
+        //test that ng-if doesn't appear
+        contents.should.not.match(/\s+ng-if/);
+        //handle a <ng-include> directive
+        contents.should.match(/data-ng-model/);
+        //test that ng-if doesn't appear
+        contents.should.not.match(/\s+ng-model/);
+    });
+
     it('should not change anything other than angular directives', function () {
         var filename = './tests/fixtures/angular-complex.html';
         var htmlify = angularHtml5();
