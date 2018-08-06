@@ -35,20 +35,6 @@ valid HTML5 tags that start with `data-something`.
 ```
 #### <img src="http://www.w3.org/html/logo/downloads/HTML5_Logo_256.png" alt="HTML5 Valid" width="64" height="64"/>
 
-**angular-html5** looks for `ng-` directives by default and can handle the following cases:
-```html
-<!-- attribute -->
-<ANY ng-directive>
-<!-- regular element -->
-<ng-directive></ng-directive>
-<!-- self closing element -->
-<ng-directive />
-<!-- custom directive prefix -->
-<ui-router></ui-router>
-<!-- your name prefix -->
-<gilad-cool-loader></gilad-cool-loader>
-```
-
 You can add additional prefixes using the option `customPrefixes`.
 
 This plugin plays nice with `type="text/ng-template"` and won't break it.
